@@ -33,22 +33,22 @@ namespace Projeto.Pages
         protected global::System.Web.UI.WebControls.TextBox txtNome;
 
         /// <summary>
-        /// Controle labelMarca.
+        /// Controle ddlMarca.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelMarca;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
 
         /// <summary>
-        /// Controle txtMarca.
+        /// Controle Marcas.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarca;
+        protected global::System.Web.UI.WebControls.SqlDataSource Marcas;
 
         /// <summary>
         /// Controle labelPreco.
@@ -87,31 +87,31 @@ namespace Projeto.Pages
         protected global::System.Web.UI.WebControls.TextBox txtQtd;
 
         /// <summary>
-        /// Controle labelCategoria.
+        /// Controle ddlCategoria.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelCategoria;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoria;
 
         /// <summary>
-        /// Controle DropDownList1.
+        /// Controle Categorias.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.SqlDataSource Categorias;
 
         /// <summary>
-        /// Controle Button1.
+        /// Controle bttSalvar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button bttSalvar;
 
         /// <summary>
         /// Controle Button2.
@@ -121,5 +121,32 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
+
+        /// <summary>
+        /// Controle lblMensagem.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensagem;
+
+        /// <summary>
+        /// Controle GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
+
+        /// <summary>
+        /// Controle Produtos.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource Produtos;
     }
 }

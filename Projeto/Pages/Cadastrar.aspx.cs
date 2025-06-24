@@ -1,17 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Projeto.Pages
 {
-    public partial class Cadastrar : System.Web.UI.Page
+    public partial class Cadastrar : Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void bttSalvar_Click(object sender, EventArgs e)
         {
+            string nome = txtNome.Text;
+            int marcaId = int.Parse(ddlMarca.SelectedValue);
+            int categoriaId = int.Parse(ddlCategoria.SelectedValue);
+            decimal preco = decimal.Parse(txtPreco.Text);
+            int qtd = int.Parse(txtQtd.Text);
 
+            string conexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DB.mdf;Integrated Security=True";
+
+            using (SqlConnection con = new SqlConnection(conexao))
+            {
+                string sql = "INSERT INTO Produtos (Nome, MarcaID, CategoriaID, Preco, QTD) VALUES (@nome, @marca, @categoria, @preco, @qtd)";
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@marca", marcaId);
+                cmd.Parameters.AddWithValue("@categoria", categoriaId);
+                cmd.Parameters.AddWithValue("@preco", preco);
+                cmd.Parameters.AddWithValue("@qtd", qtd);
+
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    lblMensagem.Text = "Produto cadastrado com sucesso!";
+                }
+                catch (Exception ex)
+                {
+                    lblMensagem.Text = "Erro ao cadastrar: " + ex.Message;
+                }
+            }
         }
     }
 }

@@ -31,20 +31,12 @@
 
 
                 <div class="col-md-2">
-                    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" 
+                    <asp:GridView ID="GridView1" runat="server" DataSourceID="Produtos"
                         CssClass="table table-striped"
-                        AutoGenerateColumns="False" DataKeyNames="Id" AllowSorting="True"
+                        AutoGenerateColumns="False" AllowSorting="True"
                         ShowHeaderWhenEmpty="True" EmptyDataText="Nenhum produto cadastrado no momento.">
-                        <Columns>
-                            <asp:CommandField ShowSelectButton="True"></asp:CommandField>
-                            <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" InsertVisible="False" SortExpression="Id"></asp:BoundField>
-                            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome"></asp:BoundField>
-                            <asp:BoundField DataField="Quantidade" HeaderText="Quantidade" SortExpression="Quantidade"></asp:BoundField>
-                            <asp:BoundField DataField="Preco" HeaderText="Preco" SortExpression="Preco"></asp:BoundField>
-                            <asp:BoundField DataField="Categoria" HeaderText="Categoria" SortExpression="Categoria"></asp:BoundField>
-                            <asp:BoundField DataField="Marca" HeaderText="Marca" SortExpression="Marca"></asp:BoundField>
-                        </Columns>
-                    </asp:GridView >
+                    </asp:GridView>
+                    <asp:SqlDataSource runat="server" ID="Produtos" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [Produtos]"></asp:SqlDataSource>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Produtos]" DeleteCommand="DELETE FROM [Produtos] WHERE [Id] = @Id" InsertCommand="INSERT INTO [Produtos] ([Nome], [Quantidade], [Preco], [Categoria], [Marca]) VALUES (@Nome, @Quantidade, @Preco, @Categoria, @Marca)" UpdateCommand="UPDATE [Produtos] SET [Nome] = @Nome, [Quantidade] = @Quantidade, [Preco] = @Preco, [Categoria] = @Categoria, [Marca] = @Marca WHERE [Id] = @Id">
                         <DeleteParameters>
                             <asp:Parameter Name="Id" Type="Int32"></asp:Parameter>

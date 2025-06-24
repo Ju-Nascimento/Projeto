@@ -11,7 +11,7 @@
 
         <div class="row">
             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2>Cadastrar Produtos</h2>
+                <h2>Cadastrar Produto</h2>
                 <p>
                     Cadastrar produtos no Banco de Dados
                 </p>
