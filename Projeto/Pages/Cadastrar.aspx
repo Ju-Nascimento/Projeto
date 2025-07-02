@@ -9,6 +9,7 @@
                     <asp:TextBox CssClass="form-control" ID="txtNome" runat="server"></asp:TextBox>
                 </div>
                 <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="labelMarcas" runat="server" Text="Marca:"></asp:Label>
                     <asp:DropDownList ID="ddlMarca" runat="server" DataSourceID="Marcas" DataTextField="Nome" DataValueField="Id" CssClass="form-select"></asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="Marcas"
                         ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
@@ -23,6 +24,7 @@
                     <asp:TextBox CssClass="form-control" ID="txtQtd" runat="server"></asp:TextBox>
                 </div>
                 <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="labelCategoria" runat="server" Text="Categorias: "></asp:Label>
                     <asp:DropDownList CssClass="form-select" ID="ddlCategoria" runat="server" DataSourceID="Categorias" DataTextField="Nome" DataValueField="Id">
                     </asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="Categorias"
@@ -31,13 +33,10 @@
 
                 </div>
                 <asp:Button class="btn btn-primary btn-md" ID="bttSalvar" runat="server" Text="Salvar" OnClick="bttSalvar_Click" />
-                <asp:Button class="btn btn-primary btn-md" ID="Button2" runat="server" Text="Cancelar" />
+                <asp:Button class="btn btn-primary btn-md" ID="Button2" runat="server" Text="Cancelar" Onclick="Button2_Click"/>
                 <asp:Label CssClass="form-label" ID="lblMensagem" runat="server"></asp:Label>
             </div>
-            <div>
-                <asp:GridView ID="GridView1" runat="server" DataSourceID="Produtos"></asp:GridView>
-                <asp:SqlDataSource runat="server" ID="Produtos" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [Produtos]"></asp:SqlDataSource>
-            </div>
+          
         </div>
     </main>
 </asp:Content>

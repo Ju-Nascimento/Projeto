@@ -31,13 +31,29 @@ namespace Projeto.Pages
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    lblMensagem.Text = "Produto cadastrado com sucesso!";
+                    lblMensagem.Text = "✅ Produto cadastrado com sucesso!";
+                    LimparCampos();
                 }
                 catch (Exception ex)
                 {
-                    lblMensagem.Text = "Erro ao cadastrar: " + ex.Message;
+                    lblMensagem.Text = "❌ Erro ao cadastrar: " + ex.Message;
                 }
             }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+            lblMensagem.Text = ""; // limpa a mensagem também
+        }
+
+        public void LimparCampos()
+        {
+            txtNome.Text = "";
+            ddlMarca.SelectedIndex = 0;
+            ddlCategoria.SelectedIndex = 0;
+            txtPreco.Text = "";
+            txtQtd.Text = "";
         }
     }
 }

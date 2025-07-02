@@ -1,37 +1,105 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Lancamentos.aspx.cs" Inherits="Projeto.Pages.Editar" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main class="container m-4">
         <div class="row">
             <div class="col-md-6">
 
-                <div class="m-2" id="FormVendas">
-                    
-                    <asp:Label CssClass="form-label" ID="labelCategoria" runat="server" Text="Categoria: "></asp:Label> 
-                    <asp:DropDownList CssClass="form-select" ID="dropCategorias" runat="server"></asp:DropDownList>
-
-                    <asp:Label CssClass="form-label" ID="labelMarcas" runat="server" Text="Marca:"></asp:Label> 
-                    <asp:DropDownList CssClass="form-select" ID="dropMarcas" runat="server"></asp:DropDownList>
-
-                    <asp:Label CssClass="form-label" ID="labelProdutos" runat="server" Text="Produto:"></asp:Label> 
-                    <asp:DropDownList CssClass="form-select" ID="dropProdutos" runat="server"></asp:DropDownList>
-
-                    <asp:Label CssClass="form-label" ID="labelQTD" runat="server" Text="Quantidade:"></asp:Label> 
-                    <asp:TextBox CssClass="form-control" ID="txtQtd" runat="server"></asp:TextBox>
-
-                    <asp:Label CssClass="form-label" ID="labelTotal" runat="server" Text="Subtotal"></asp:Label> 
-                    <asp:TextBox CssClass="form-control" ID="txtTotal" runat="server"></asp:TextBox>
-
-                    <asp:Label CssClass="form-label" ID="labelData" runat="server" Text="Data: "></asp:Label> 
-                    <asp:TextBox CssClass="form-control" ID="txtData" runat="server"></asp:TextBox>
-
-                    <asp:Button ID="Button1" runat="server" Text="Confirmar" />
-                    <asp:Button ID="Button2" runat="server" Text="Cancelar" />
+                <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="Label1" runat="server" Text="Categoria:"></asp:Label>
+                    <asp:DropDownList 
+                        ID="DropDownList1" 
+                        runat="server" 
+                        AutoPostBack="true" 
+                        OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" 
+                        CssClass="form-select">
+                    </asp:DropDownList>
                 </div>
 
-                <div class="m-2"id="viewVendas">
-
+                <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="Label2" runat="server" Text="Marca:"></asp:Label>
+                    <asp:DropDownList 
+                        ID="DropDownList2" 
+                        runat="server" 
+                        AutoPostBack="true" 
+                        OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" 
+                        CssClass="form-select">
+                    </asp:DropDownList>
                 </div>
+
+                <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="Label3" runat="server" Text="Produto:"></asp:Label>
+                    <asp:DropDownList 
+                        ID="DropDownList3" 
+                        runat="server" 
+                        CssClass="form-select">
+                    </asp:DropDownList>
+                </div>
+
+                <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="Label4" runat="server" Text="Quantidade:"></asp:Label>
+                    <asp:TextBox 
+                        ID="TextBox1" 
+                        runat="server" 
+                        CssClass="form-control">
+                    </asp:TextBox>
+                </div>
+
+                <div class="mb-2">
+                    <asp:Label CssClass="form-label" ID="Label5" runat="server" Text="Subtotal:"></asp:Label>
+                    <asp:TextBox 
+                        ID="TextBox2" 
+                        runat="server" 
+                        CssClass="form-control" 
+                        ReadOnly="true">
+                    </asp:TextBox>
+                </div>
+
+                <div class="mb-3">
+                    <asp:Button 
+                        ID="btnConfirmar" 
+                        runat="server" 
+                        Text="Confirmar" 
+                        OnClick="btnConfirmar_Click" 
+                        CssClass="btn btn-primary" />
+                    <asp:Button 
+                        ID="Button2" 
+                        runat="server" 
+                        Text="Cancelar" 
+                        CssClass="btn btn-secondary ms-2"
+                        onclick="Button2_Click"/>
+                </div>
+
+                <asp:Label 
+                    ID="lblMensagem" 
+                    runat="server" 
+                    CssClass="form-label text-success" 
+                    Visible="false">
+                </asp:Label>
+
             </div>
         </div>
     </main>
+
+   <script>
+       function atualizarSubtotal() {
+           var ddlProdutos = document.getElementById('<%= DropDownList3.ClientID %>');
+        var txtQtd = document.getElementById('<%= TextBox1.ClientID %>');
+        var txtSubtotal = document.getElementById('<%= TextBox2.ClientID %>');
+
+        var selectedOption = ddlProdutos.options[ddlProdutos.selectedIndex];
+        var preco = parseFloat(selectedOption.getAttribute("data-preco").replace(',', '.')) || 0;
+        var qtd = parseFloat(txtQtd.value.replace(',', '.')) || 0;
+
+        var subtotal = preco * qtd;
+        txtSubtotal.value = subtotal.toFixed(2);
+    }
+
+    window.onload = function () {
+        document.getElementById('<%= DropDownList3.ClientID %>').addEventListener('change', atualizarSubtotal);
+        document.getElementById('<%= TextBox1.ClientID %>').addEventListener('input', atualizarSubtotal);
+       };
+</script>
+
+
 </asp:Content>
