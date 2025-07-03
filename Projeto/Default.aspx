@@ -4,7 +4,7 @@
 
     <main>
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
+            <h1 id="aspnetTitle">Web Forms</h1>
             <p class="lead">Sistema de gerenciamento de Estoque </p>
 
         </section>

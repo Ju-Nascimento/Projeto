@@ -46,11 +46,24 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" >
+                        <Items>
+                            <asp:MenuItem Text="Cadastrar" Value="Cadastrar">
+                                <asp:MenuItem NavigateUrl="~/Pages/Categorias.aspx" Text="Categorias" Value="Categorias"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Pages/Marcas.aspx" Text="Marcas" Value="Marcas"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Pages/Cadastrar.aspx" Text="Produtos" Value="Produtos"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Pages/Consultar.aspx" Text="Consultar" Value="Consultar"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Pages/Lancamentos.aspx" Text="Lan&#231;amentos" Value="Lan&#231;amentos"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>
+
+                  <!--  <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Pages/Cadastrar.aspx">Cadastrar</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Pages/Consultar.aspx">Consultar</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Pages/Lancamentos.aspx">Lançamentos</a></li>
                     </ul>
+                      -->
                 </div>
             </div>
         </nav>

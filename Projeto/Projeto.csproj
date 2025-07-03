@@ -124,8 +124,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Cadastrar.aspx" />
+    <Content Include="Pages\Categorias.aspx" />
     <Content Include="Pages\Consultar.aspx" />
     <Content Include="Pages\Lancamentos.aspx" />
+    <Content Include="Pages\Marcas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -207,6 +209,13 @@
     <Compile Include="Pages\Cadastrar.aspx.designer.cs">
       <DependentUpon>Cadastrar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Categorias.aspx.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Categorias.aspx.designer.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Consultar.aspx.cs">
       <DependentUpon>Consultar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,6 +229,13 @@
     </Compile>
     <Compile Include="Pages\Lancamentos.aspx.designer.cs">
       <DependentUpon>Lancamentos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Marcas.aspx.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Marcas.aspx.designer.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -246,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="Pages\DAL\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
