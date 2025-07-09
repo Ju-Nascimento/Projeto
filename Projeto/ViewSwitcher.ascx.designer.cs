@@ -6,10 +6,7 @@
 //     the code is regenerated. 
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Projeto {
-    
-    
     public partial class ViewSwitcher {
     }
 }

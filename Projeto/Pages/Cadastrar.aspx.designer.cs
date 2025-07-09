@@ -6,14 +6,10 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto.Pages
 {
-
-
     public partial class Cadastrar
     {
-
         /// <summary>
         /// Controle labelNome.
         /// </summary>
@@ -22,7 +18,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelNome;
-
         /// <summary>
         /// Controle txtNome.
         /// </summary>
@@ -31,7 +26,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNome;
-
         /// <summary>
         /// Controle labelMarcas.
         /// </summary>
@@ -40,7 +34,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelMarcas;
-
         /// <summary>
         /// Controle ddlMarca.
         /// </summary>
@@ -49,7 +42,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
-
         /// <summary>
         /// Controle labelQtd.
         /// </summary>
@@ -58,7 +50,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelQtd;
-
         /// <summary>
         /// Controle txtQtd.
         /// </summary>
@@ -67,7 +58,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQtd;
-
         /// <summary>
         /// Controle labelCategoria.
         /// </summary>
@@ -76,7 +66,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelCategoria;
-
         /// <summary>
         /// Controle ddlCategoria.
         /// </summary>
@@ -85,7 +74,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategoria;
-
         /// <summary>
         /// Controle bttSalvar.
         /// </summary>
@@ -94,7 +82,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttSalvar;
-
         /// <summary>
         /// Controle bttCancelar.
         /// </summary>
@@ -103,7 +90,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttCancelar;
-
         /// <summary>
         /// Controle lblMensagem.
         /// </summary>
@@ -112,7 +98,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensagem;
-
         /// <summary>
         /// Controle GridProdutos.
         /// </summary>
@@ -121,7 +106,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridProdutos;
-
         /// <summary>
         /// Controle Marcas.
         /// </summary>
@@ -130,7 +114,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Marcas;
-
         /// <summary>
         /// Controle Categorias.
         /// </summary>
@@ -139,7 +122,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Categorias;
-
         /// <summary>
         /// Controle Produtos.
         /// </summary>

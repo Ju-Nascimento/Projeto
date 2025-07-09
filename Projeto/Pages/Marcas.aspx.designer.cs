@@ -6,14 +6,10 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto.Pages
 {
-
-
     public partial class Marcas
     {
-
         /// <summary>
         /// Controle lblMarca.
         /// </summary>
@@ -22,7 +18,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMarca;
-
         /// <summary>
         /// Controle txtMarca.
         /// </summary>
@@ -31,7 +26,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMarca;
-
         /// <summary>
         /// Controle bttSalvar.
         /// </summary>
@@ -40,7 +34,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttSalvar;
-
         /// <summary>
         /// Controle bttCancelar.
         /// </summary>
@@ -49,7 +42,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttCancelar;
-
         /// <summary>
         /// Controle lblMensagem.
         /// </summary>
@@ -58,7 +50,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensagem;
-
         /// <summary>
         /// Controle GridMarcas.
         /// </summary>
@@ -67,7 +58,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridMarcas;
-
         /// <summary>
         /// Controle Grid_Marcas.
         /// </summary>

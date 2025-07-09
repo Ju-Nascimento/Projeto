@@ -6,14 +6,10 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto
 {
-
-
     public partial class SiteMaster
     {
-
         /// <summary>
         /// Controle Menu1.
         /// </summary>
@@ -22,7 +18,6 @@ namespace Projeto
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Menu Menu1;
-
         /// <summary>
         /// Controle MainContent.
         /// </summary>

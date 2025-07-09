@@ -6,14 +6,10 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto.Pages
 {
-
-
     public partial class Consultar
     {
-
         /// <summary>
         /// Controle Label1.
         /// </summary>
@@ -22,7 +18,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-
         /// <summary>
         /// Controle DropDownList1.
         /// </summary>
@@ -31,7 +26,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-
         /// <summary>
         /// Controle Categorias.
         /// </summary>
@@ -40,7 +34,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Categorias;
-
         /// <summary>
         /// Controle Label2.
         /// </summary>
@@ -49,7 +42,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label2;
-
         /// <summary>
         /// Controle DropDownList2.
         /// </summary>
@@ -58,7 +50,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
-
         /// <summary>
         /// Controle Marcas.
         /// </summary>
@@ -67,7 +58,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Marcas;
-
         /// <summary>
         /// Controle Label3.
         /// </summary>
@@ -76,7 +66,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label3;
-
         /// <summary>
         /// Controle DropDownList3.
         /// </summary>
@@ -85,7 +74,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
-
         /// <summary>
         /// Controle Produtos.
         /// </summary>
@@ -94,7 +82,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource Produtos;
-
         /// <summary>
         /// Controle bttSalvar.
         /// </summary>
@@ -103,7 +90,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bttSalvar;
-
         /// <summary>
         /// Controle Button2.
         /// </summary>
@@ -112,7 +98,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
-
         /// <summary>
         /// Controle GridView1.
         /// </summary>
@@ -121,7 +106,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-
         /// <summary>
         /// Controle pnlEditar.
         /// </summary>
@@ -130,7 +114,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlEditar;
-
         /// <summary>
         /// Controle hfId.
         /// </summary>
@@ -139,7 +122,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfId;
-
         /// <summary>
         /// Controle txtNome.
         /// </summary>
@@ -148,7 +130,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNome;
-
         /// <summary>
         /// Controle ddlCategoria.
         /// </summary>
@@ -157,7 +138,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategoria;
-
         /// <summary>
         /// Controle ddlMarca.
         /// </summary>
@@ -166,7 +146,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
-
         /// <summary>
         /// Controle txtQtd.
         /// </summary>
@@ -175,7 +154,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQtd;
-
         /// <summary>
         /// Controle btnSalvarEdicao.
         /// </summary>
@@ -184,7 +162,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSalvarEdicao;
-
         /// <summary>
         /// Controle btnCancelar.
         /// </summary>

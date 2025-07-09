@@ -6,11 +6,8 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto
 {
-
-
     public partial class _Default
     {
     }

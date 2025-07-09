@@ -1,14 +1,10 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Projeto._Default" %>
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
     <main>
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">Web Forms</h1>
             <p class="lead">Sistema de gerenciamento de Estoque </p>
-
         </section>
-
         <div class="row">
             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
                 <h2>Cadastrar Produto</h2>
@@ -31,7 +27,7 @@
             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
                 <h2>Lançamentos de Produtos</h2>
                 <p>
-                   Registrar a saída de itens do estoque no sistema.
+                   Registrar entrada e saída de itens do estoque no sistema.
                 </p>
                 <p>
                     <a class="btn btn-primary btn-md" href="Pages/Lancamentos.aspx">Lançamento &raquo;</a>
@@ -39,5 +35,4 @@
             </section>
         </div>
     </main>
-
 </asp:Content>

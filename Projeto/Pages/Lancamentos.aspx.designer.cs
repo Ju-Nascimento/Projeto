@@ -6,14 +6,10 @@
 //     o código for recriado
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
-
 namespace Projeto.Pages
 {
-
-
     public partial class Editar
     {
-
         /// <summary>
         /// Controle lblTipo.
         /// </summary>
@@ -22,7 +18,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTipo;
-
         /// <summary>
         /// Controle DropTipo.
         /// </summary>
@@ -31,7 +26,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropTipo;
-
         /// <summary>
         /// Controle lblCategoria.
         /// </summary>
@@ -40,7 +34,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCategoria;
-
         /// <summary>
         /// Controle DropCategorias.
         /// </summary>
@@ -49,7 +42,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropCategorias;
-
         /// <summary>
         /// Controle lblMarca.
         /// </summary>
@@ -58,7 +50,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMarca;
-
         /// <summary>
         /// Controle DropMarcas.
         /// </summary>
@@ -67,7 +58,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropMarcas;
-
         /// <summary>
         /// Controle lblProduto.
         /// </summary>
@@ -76,7 +66,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProduto;
-
         /// <summary>
         /// Controle DropProdutos.
         /// </summary>
@@ -85,7 +74,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropProdutos;
-
         /// <summary>
         /// Controle lblQtd.
         /// </summary>
@@ -94,7 +82,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblQtd;
-
         /// <summary>
         /// Controle txtQtd.
         /// </summary>
@@ -103,7 +90,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQtd;
-
         /// <summary>
         /// Controle btnConfirmar.
         /// </summary>
@@ -112,7 +98,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmar;
-
         /// <summary>
         /// Controle Button2.
         /// </summary>
@@ -121,7 +106,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button2;
-
         /// <summary>
         /// Controle lblMensagem.
         /// </summary>
@@ -130,7 +114,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensagem;
-
         /// <summary>
         /// Controle hfId.
         /// </summary>
@@ -139,7 +122,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfId;
-
         /// <summary>
         /// Controle GridLancamentos.
         /// </summary>
@@ -148,7 +130,6 @@ namespace Projeto.Pages
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridLancamentos;
-
         /// <summary>
         /// Controle LancamentosDataSource.
         /// </summary>

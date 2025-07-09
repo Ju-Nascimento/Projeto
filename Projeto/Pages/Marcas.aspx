@@ -1,37 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Marcas.aspx.cs" Inherits="Projeto.Pages.Marcas" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <main class="container mt-4">
-        
-        <!-- Card do formulário -->
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
                 <div class="card p-3 w-100">
                     <div class="row">
-
-                        <!-- Nome da marca -->
                         <div class="col-md-6 mb-2 d-flex align-items-center">
                             <asp:Label CssClass="form-label me-2 mb-0" ID="lblMarca" runat="server" Text="Nova Marca:" />
                             <asp:TextBox CssClass="form-control me-2" ID="txtMarca" runat="server" />
                         </div>
-
-                        <!-- Botões -->
                         <div class="col-md-6 mb-2 d-flex align-items-center">
                             <asp:Button CssClass="btn btn-primary me-2" ID="bttSalvar" runat="server" Text="Cadastrar" OnClick="bttSalvar_Click" />
                             <asp:Button CssClass="btn btn-secondary" ID="bttCancelar" runat="server" Text="Cancelar" OnClick="bttCancelar_Click" />
                         </div>
-
-                        <!-- Mensagem -->
                         <div class="col-md-12">
                             <asp:Label CssClass="form-text text-success" ID="lblMensagem" runat="server" />
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Card com Grid de Marcas -->
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card p-3">
@@ -63,8 +51,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- SqlDataSource -->
         <asp:SqlDataSource runat="server" ID="Grid_Marcas"
             ConnectionString='<%$ ConnectionStrings:ConnectionString %>'
             SelectCommand="SELECT * FROM [Marca] WHERE Ativo = 1"
@@ -82,7 +68,5 @@
                 <asp:Parameter Name="Id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-
     </main>
 </asp:Content>
-

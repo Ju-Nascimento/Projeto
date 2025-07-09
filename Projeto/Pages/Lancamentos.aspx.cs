@@ -3,7 +3,6 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace Projeto.Pages
 {
     public partial class Editar : System.Web.UI.Page
@@ -13,7 +12,6 @@ namespace Projeto.Pages
             if (!IsPostBack)
             {
                 CarregarCategorias();
-
                 if (Session["Mensagem"] != null)
                 {
                     lblMensagem.Text = Session["Mensagem"].ToString();
@@ -23,7 +21,6 @@ namespace Projeto.Pages
                 }
             }
         }
-
         private void CarregarCategorias()
         {
             string query = "SELECT Id, Nome FROM Categorias WHERE Ativo = 1";
@@ -39,12 +36,10 @@ namespace Projeto.Pages
                 DropCategorias.Items.Insert(0, new ListItem("Selecione...", ""));
             }
         }
-
         protected void DropCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropMarcas.Items.Clear();
             DropProdutos.Items.Clear();
-
             if (!string.IsNullOrEmpty(DropCategorias.SelectedValue))
             {
                 int categoriaId = int.Parse(DropCategorias.SelectedValue);
@@ -52,7 +47,6 @@ namespace Projeto.Pages
                                  FROM Marca m
                                  INNER JOIN Produtos p ON m.Id = p.MarcaID
                                  WHERE p.CategoriaID = @CategoriaId AND m.Ativo = 1 AND p.Ativo = 1";
-
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -67,11 +61,9 @@ namespace Projeto.Pages
                 }
             }
         }
-
         protected void DropMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropProdutos.Items.Clear();
-
             if (!string.IsNullOrEmpty(DropMarcas.SelectedValue) && !string.IsNullOrEmpty(DropCategorias.SelectedValue))
             {
                 int marcaId = int.Parse(DropMarcas.SelectedValue);
@@ -79,7 +71,6 @@ namespace Projeto.Pages
                 string query = @"SELECT Id, Nome 
                                  FROM Produtos 
                                  WHERE MarcaID = @MarcaId AND CategoriaID = @CategoriaId AND Ativo = 1";
-
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -95,11 +86,9 @@ namespace Projeto.Pages
                 }
             }
         }
-
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             lblMensagem.Visible = false;
-
             if (string.IsNullOrEmpty(DropTipo.SelectedValue) ||
                 string.IsNullOrEmpty(DropCategorias.SelectedValue) ||
                 string.IsNullOrEmpty(DropMarcas.SelectedValue) ||
@@ -111,25 +100,20 @@ namespace Projeto.Pages
                 lblMensagem.Visible = true;
                 return;
             }
-
             int categoriaId = int.Parse(DropCategorias.SelectedValue);
             int marcaId = int.Parse(DropMarcas.SelectedValue);
             int produtoId = int.Parse(DropProdutos.SelectedValue);
             int qtd = int.Parse(txtQtd.Text);
             string tipo = DropTipo.SelectedValue;
-
             string conexao = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
             using (SqlConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
-
                 if (!string.IsNullOrEmpty(hfId.Value))
                 {
                     string sqlUpdate = @"UPDATE Lancamentos 
                                          SET Tipo = @Tipo, CategoriaID = @CategoriaID, MarcaID = @MarcaID, ProdutoID = @ProdutoID, QTD = @QTD 
                                          WHERE Id = @Id";
-
                     SqlCommand cmd = new SqlCommand(sqlUpdate, conn);
                     cmd.Parameters.AddWithValue("@Tipo", tipo);
                     cmd.Parameters.AddWithValue("@CategoriaID", categoriaId);
@@ -138,7 +122,6 @@ namespace Projeto.Pages
                     cmd.Parameters.AddWithValue("@QTD", qtd);
                     cmd.Parameters.AddWithValue("@Id", int.Parse(hfId.Value));
                     cmd.ExecuteNonQuery();
-
                     Session["Mensagem"] = "✏️ Lançamento editado com sucesso!";
                 }
                 else
@@ -146,18 +129,15 @@ namespace Projeto.Pages
                     string estoqueSql = tipo == "Entrada"
                         ? "UPDATE Produtos SET QTD = QTD + @Qtd WHERE Id = @ProdutoId"
                         : "UPDATE Produtos SET QTD = QTD - @Qtd WHERE Id = @ProdutoId";
-
                     using (SqlCommand cmdEstoque = new SqlCommand(estoqueSql, conn))
                     {
                         cmdEstoque.Parameters.AddWithValue("@Qtd", qtd);
                         cmdEstoque.Parameters.AddWithValue("@ProdutoId", produtoId);
-
                         if (tipo == "Saida")
                         {
                             SqlCommand verificarEstoque = new SqlCommand("SELECT QTD FROM Produtos WHERE Id = @ProdutoId", conn);
                             verificarEstoque.Parameters.AddWithValue("@ProdutoId", produtoId);
                             int qtdAtual = (int)verificarEstoque.ExecuteScalar();
-
                             if (qtd > qtdAtual)
                             {
                                 lblMensagem.Text = $"Estoque insuficiente. Atual: {qtdAtual}.";
@@ -166,13 +146,10 @@ namespace Projeto.Pages
                                 return;
                             }
                         }
-
                         cmdEstoque.ExecuteNonQuery();
                     }
-
                     string insertSql = @"INSERT INTO Lancamentos (Tipo, CategoriaID, MarcaID, ProdutoID, QTD)
                                          VALUES (@Tipo, @CategoriaID, @MarcaID, @ProdutoID, @QTD)";
-
                     using (SqlCommand cmdLanc = new SqlCommand(insertSql, conn))
                     {
                         cmdLanc.Parameters.AddWithValue("@Tipo", tipo);
@@ -182,14 +159,11 @@ namespace Projeto.Pages
                         cmdLanc.Parameters.AddWithValue("@QTD", qtd);
                         cmdLanc.ExecuteNonQuery();
                     }
-
                     Session["Mensagem"] = "✅ Lançamento registrado com sucesso!";
                 }
             }
-
             Response.Redirect(Request.RawUrl);
         }
-
         protected void Button2_Click(object sender, EventArgs e)
         {
             hfId.Value = "";
@@ -199,11 +173,9 @@ namespace Projeto.Pages
             DropMarcas.Items.Clear();
             DropProdutos.Items.Clear();
         }
-
         protected void GridLancamentos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int id = Convert.ToInt32(e.CommandArgument);
-
             if (e.CommandName == "Excluir")
             {
                 string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -215,16 +187,13 @@ namespace Projeto.Pages
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
-
                 Response.Redirect(Request.RawUrl);
             }
-
             if (e.CommandName == "Editar")
             {
                 CarregarLancamentoParaEdicao(id);
             }
         }
-
         private void CarregarLancamentoParaEdicao(int id)
         {
             string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -233,11 +202,9 @@ namespace Projeto.Pages
                 string sql = @"SELECT Tipo, CategoriaID, MarcaID, ProdutoID, QTD 
                                FROM Lancamentos 
                                WHERE Id = @Id";
-
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Id", id);
                 con.Open();
-
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {

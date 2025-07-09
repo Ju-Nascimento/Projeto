@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.UI;
-
 namespace Projeto
 {
     public class BundleConfig
@@ -13,7 +12,6 @@ namespace Projeto
         public static void RegisterBundles(BundleCollection bundles)
         {
             RegisterJQueryScriptManager();
-
             bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
                             "~/Scripts/WebForms/WebForms.js",
                             "~/Scripts/WebForms/WebUIValidation.js",
@@ -23,20 +21,17 @@ namespace Projeto
                             "~/Scripts/WebForms/DetailsView.js",
                             "~/Scripts/WebForms/TreeView.js",
                             "~/Scripts/WebForms/WebParts.js"));
-
             // A ordem é muito importante para que esses arquivos funcionem; eles possuem dependências explícitas
             bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
-
             // Use a versão de Desenvolvimento do Modernizr para se desenvolver e aprender com ele. Em seguida, quando estiver
             // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
         }
-
         public static void RegisterJQueryScriptManager()
         {
             ScriptManager.ScriptResourceMapping.AddDefinition("jquery",
