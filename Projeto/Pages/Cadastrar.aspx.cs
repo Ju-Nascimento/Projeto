@@ -6,42 +6,51 @@ namespace Projeto.Pages
 {
     public partial class Cadastrar : Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack && Session["Mensagem"] != null)
+            {
+                lblMensagem.Text = Session["Mensagem"].ToString();
+                Session["Mensagem"] = null; // Limpa a sessão para não repetir
+            }
+        }
+
         protected void bttSalvar_Click(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
             int marcaId = int.Parse(ddlMarca.SelectedValue);
             int categoriaId = int.Parse(ddlCategoria.SelectedValue);
-            decimal preco = decimal.Parse(txtPreco.Text);
+           
             int qtd = int.Parse(txtQtd.Text);
 
             string conexao = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DB.mdf;Integrated Security=True";
 
             using (SqlConnection con = new SqlConnection(conexao))
             {
-                string sql = "INSERT INTO Produtos (Nome, MarcaID, CategoriaID, Preco, QTD) VALUES (@nome, @marca, @categoria, @preco, @qtd)";
+                string sql = "INSERT INTO Produtos (Nome, MarcaID, CategoriaID, QTD) VALUES (@nome, @marca, @categoria, @qtd)";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 cmd.Parameters.AddWithValue("@nome", nome);
                 cmd.Parameters.AddWithValue("@marca", marcaId);
                 cmd.Parameters.AddWithValue("@categoria", categoriaId);
-                cmd.Parameters.AddWithValue("@preco", preco);
                 cmd.Parameters.AddWithValue("@qtd", qtd);
 
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    lblMensagem.Text = "✅ Produto cadastrado com sucesso!";
-                    LimparCampos();
+                    Session["Mensagem"] = "✅ Produto cadastrado com sucesso!";
+                    Response.Redirect(Request.RawUrl); // Faz o redirect e impede o reenvio
                 }
                 catch (Exception ex)
                 {
                     lblMensagem.Text = "❌ Erro ao cadastrar: " + ex.Message;
                 }
+
             }
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void bttCancelar_Click(object sender, EventArgs e)
         {
             LimparCampos();
             lblMensagem.Text = ""; // limpa a mensagem também
@@ -52,7 +61,6 @@ namespace Projeto.Pages
             txtNome.Text = "";
             ddlMarca.SelectedIndex = 0;
             ddlCategoria.SelectedIndex = 0;
-            txtPreco.Text = "";
             txtQtd.Text = "";
         }
     }

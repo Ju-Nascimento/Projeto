@@ -35,7 +35,7 @@ namespace Projeto.Pages
                     cmd.ExecuteNonQuery();
                     txtMarca.Text = " ";
                     GridMarcas.DataBind();
-                    Response.Redirect(Request.RawUrl + "?msg=sucesso");
+                    Response.Redirect(Request.RawUrl + "?lblMensagem=sucesso");
                 }
                 catch(Exception ex) {
 

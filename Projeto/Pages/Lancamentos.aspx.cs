@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,39 +13,45 @@ namespace Projeto.Pages
             if (!IsPostBack)
             {
                 CarregarCategorias();
+
+                if (Session["Mensagem"] != null)
+                {
+                    lblMensagem.Text = Session["Mensagem"].ToString();
+                    lblMensagem.CssClass = "text-success";
+                    lblMensagem.Visible = true;
+                    Session.Remove("Mensagem");
+                }
             }
         }
 
         private void CarregarCategorias()
         {
-            string query = "SELECT Id, Nome FROM Categorias";
+            string query = "SELECT Id, Nome FROM Categorias WHERE Ativo = 1";
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
-
-                DropDownList1.DataSource = dr;
-                DropDownList1.DataTextField = "Nome";
-                DropDownList1.DataValueField = "Id";
-                DropDownList1.DataBind();
-
-                DropDownList1.Items.Insert(0, new ListItem("Selecione uma categoria", ""));
+                DropCategorias.DataSource = dr;
+                DropCategorias.DataTextField = "Nome";
+                DropCategorias.DataValueField = "Id";
+                DropCategorias.DataBind();
+                DropCategorias.Items.Insert(0, new ListItem("Selecione...", ""));
             }
         }
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void DropCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DropDownList2.Items.Clear();
-            DropDownList3.Items.Clear();
+            DropMarcas.Items.Clear();
+            DropProdutos.Items.Clear();
 
-            if (!string.IsNullOrEmpty(DropDownList1.SelectedValue))
+            if (!string.IsNullOrEmpty(DropCategorias.SelectedValue))
             {
-                int categoriaId = int.Parse(DropDownList1.SelectedValue);
-
+                int categoriaId = int.Parse(DropCategorias.SelectedValue);
                 string query = @"SELECT DISTINCT m.Id, m.Nome 
-                         FROM Marca m
-                         INNER JOIN Produtos p ON m.Id = p.MarcaID
-                         WHERE p.CategoriaID = @CategoriaId";
+                                 FROM Marca m
+                                 INNER JOIN Produtos p ON m.Id = p.MarcaID
+                                 WHERE p.CategoriaID = @CategoriaId AND m.Ativo = 1 AND p.Ativo = 1";
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -56,28 +59,26 @@ namespace Projeto.Pages
                     cmd.Parameters.AddWithValue("@CategoriaId", categoriaId);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-
-                    DropDownList2.DataSource = dr;
-                    DropDownList2.DataTextField = "Nome";
-                    DropDownList2.DataValueField = "Id";
-                    DropDownList2.DataBind();
-                    DropDownList2.Items.Insert(0, new ListItem("Selecione uma marca", ""));
+                    DropMarcas.DataSource = dr;
+                    DropMarcas.DataTextField = "Nome";
+                    DropMarcas.DataValueField = "Id";
+                    DropMarcas.DataBind();
+                    DropMarcas.Items.Insert(0, new ListItem("Selecione...", ""));
                 }
             }
         }
 
-        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DropMarcas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DropDownList3.Items.Clear();
+            DropProdutos.Items.Clear();
 
-            if (!string.IsNullOrEmpty(DropDownList2.SelectedValue) && !string.IsNullOrEmpty(DropDownList1.SelectedValue))
+            if (!string.IsNullOrEmpty(DropMarcas.SelectedValue) && !string.IsNullOrEmpty(DropCategorias.SelectedValue))
             {
-                int marcaId = int.Parse(DropDownList2.SelectedValue);
-                int categoriaId = int.Parse(DropDownList1.SelectedValue);
-
-                string query = @"SELECT Id, Nome, Preco 
-                         FROM Produtos 
-                         WHERE MarcaID = @MarcaId AND CategoriaID = @CategoriaId";
+                int marcaId = int.Parse(DropMarcas.SelectedValue);
+                int categoriaId = int.Parse(DropCategorias.SelectedValue);
+                string query = @"SELECT Id, Nome 
+                                 FROM Produtos 
+                                 WHERE MarcaID = @MarcaId AND CategoriaID = @CategoriaId AND Ativo = 1";
 
                 using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -86,90 +87,170 @@ namespace Projeto.Pages
                     cmd.Parameters.AddWithValue("@CategoriaId", categoriaId);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-
-                    while (dr.Read())
-                    {
-                        ListItem item = new ListItem(dr["Nome"].ToString(), dr["Id"].ToString());
-                        item.Attributes["data-preco"] = Convert.ToDecimal(dr["Preco"]).ToString("F2");
-                        DropDownList3.Items.Add(item);
-                    }
-
-                    DropDownList3.Items.Insert(0, new ListItem("Selecione um produto", ""));
+                    DropProdutos.DataSource = dr;
+                    DropProdutos.DataTextField = "Nome";
+                    DropProdutos.DataValueField = "Id";
+                    DropProdutos.DataBind();
+                    DropProdutos.Items.Insert(0, new ListItem("Selecione...", ""));
                 }
             }
         }
+
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
-            lblMensagem.Visible = false;  // sempre esconde no começo
+            lblMensagem.Visible = false;
 
-            if (string.IsNullOrEmpty(DropDownList3.SelectedValue) || string.IsNullOrEmpty(TextBox1.Text))
+            if (string.IsNullOrEmpty(DropTipo.SelectedValue) ||
+                string.IsNullOrEmpty(DropCategorias.SelectedValue) ||
+                string.IsNullOrEmpty(DropMarcas.SelectedValue) ||
+                string.IsNullOrEmpty(DropProdutos.SelectedValue) ||
+                string.IsNullOrEmpty(txtQtd.Text))
             {
-                lblMensagem.Text = "Por favor, selecione um produto e informe a quantidade.";
+                lblMensagem.Text = "Preencha todos os campos.";
                 lblMensagem.CssClass = "text-danger";
                 lblMensagem.Visible = true;
                 return;
             }
 
-            int produtoId = int.Parse(DropDownList3.SelectedValue);
-            int quantidadeVendida;
+            int categoriaId = int.Parse(DropCategorias.SelectedValue);
+            int marcaId = int.Parse(DropMarcas.SelectedValue);
+            int produtoId = int.Parse(DropProdutos.SelectedValue);
+            int qtd = int.Parse(txtQtd.Text);
+            string tipo = DropTipo.SelectedValue;
 
-            if (!int.TryParse(TextBox1.Text, out quantidadeVendida) || quantidadeVendida <= 0)
-            {
-                lblMensagem.Text = "Informe uma quantidade válida.";
-                lblMensagem.CssClass = "text-danger";
-                lblMensagem.Visible = true;
-                return;
-            }
+            string conexao = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(conexao))
             {
                 conn.Open();
 
-                string selectQuery = "SELECT QTD FROM Produtos WHERE Id = @ProdutoId";
-                SqlCommand selectCmd = new SqlCommand(selectQuery, conn);
-                selectCmd.Parameters.AddWithValue("@ProdutoId", produtoId);
-
-                int qtdAtual = (int)selectCmd.ExecuteScalar();
-
-                if (quantidadeVendida > qtdAtual)
+                if (!string.IsNullOrEmpty(hfId.Value))
                 {
-                    lblMensagem.Text = $"Estoque insuficiente. Estoque atual: {qtdAtual}.";
-                    lblMensagem.CssClass = "text-danger";
-                    lblMensagem.Visible = true;
-                    return;
+                    string sqlUpdate = @"UPDATE Lancamentos 
+                                         SET Tipo = @Tipo, CategoriaID = @CategoriaID, MarcaID = @MarcaID, ProdutoID = @ProdutoID, QTD = @QTD 
+                                         WHERE Id = @Id";
+
+                    SqlCommand cmd = new SqlCommand(sqlUpdate, conn);
+                    cmd.Parameters.AddWithValue("@Tipo", tipo);
+                    cmd.Parameters.AddWithValue("@CategoriaID", categoriaId);
+                    cmd.Parameters.AddWithValue("@MarcaID", marcaId);
+                    cmd.Parameters.AddWithValue("@ProdutoID", produtoId);
+                    cmd.Parameters.AddWithValue("@QTD", qtd);
+                    cmd.Parameters.AddWithValue("@Id", int.Parse(hfId.Value));
+                    cmd.ExecuteNonQuery();
+
+                    Session["Mensagem"] = "✏️ Lançamento editado com sucesso!";
                 }
+                else
+                {
+                    string estoqueSql = tipo == "Entrada"
+                        ? "UPDATE Produtos SET QTD = QTD + @Qtd WHERE Id = @ProdutoId"
+                        : "UPDATE Produtos SET QTD = QTD - @Qtd WHERE Id = @ProdutoId";
 
-                string updateQuery = "UPDATE Produtos SET QTD = QTD - @QtdVendida WHERE Id = @ProdutoId";
-                SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
-                updateCmd.Parameters.AddWithValue("@QtdVendida", quantidadeVendida);
-                updateCmd.Parameters.AddWithValue("@ProdutoId", produtoId);
+                    using (SqlCommand cmdEstoque = new SqlCommand(estoqueSql, conn))
+                    {
+                        cmdEstoque.Parameters.AddWithValue("@Qtd", qtd);
+                        cmdEstoque.Parameters.AddWithValue("@ProdutoId", produtoId);
 
-                updateCmd.ExecuteNonQuery();
+                        if (tipo == "Saida")
+                        {
+                            SqlCommand verificarEstoque = new SqlCommand("SELECT QTD FROM Produtos WHERE Id = @ProdutoId", conn);
+                            verificarEstoque.Parameters.AddWithValue("@ProdutoId", produtoId);
+                            int qtdAtual = (int)verificarEstoque.ExecuteScalar();
+
+                            if (qtd > qtdAtual)
+                            {
+                                lblMensagem.Text = $"Estoque insuficiente. Atual: {qtdAtual}.";
+                                lblMensagem.CssClass = "text-danger";
+                                lblMensagem.Visible = true;
+                                return;
+                            }
+                        }
+
+                        cmdEstoque.ExecuteNonQuery();
+                    }
+
+                    string insertSql = @"INSERT INTO Lancamentos (Tipo, CategoriaID, MarcaID, ProdutoID, QTD)
+                                         VALUES (@Tipo, @CategoriaID, @MarcaID, @ProdutoID, @QTD)";
+
+                    using (SqlCommand cmdLanc = new SqlCommand(insertSql, conn))
+                    {
+                        cmdLanc.Parameters.AddWithValue("@Tipo", tipo);
+                        cmdLanc.Parameters.AddWithValue("@CategoriaID", categoriaId);
+                        cmdLanc.Parameters.AddWithValue("@MarcaID", marcaId);
+                        cmdLanc.Parameters.AddWithValue("@ProdutoID", produtoId);
+                        cmdLanc.Parameters.AddWithValue("@QTD", qtd);
+                        cmdLanc.ExecuteNonQuery();
+                    }
+
+                    Session["Mensagem"] = "✅ Lançamento registrado com sucesso!";
+                }
             }
 
-            lblMensagem.Text = "Venda registrada com sucesso!";
-            lblMensagem.CssClass = "text-success";
-            lblMensagem.Visible = true;
-
-            // Limpar controles
-            TextBox1.Text = "";
-            TextBox2.Text = "";
-            DropDownList1.ClearSelection();
-            DropDownList2.Items.Clear();
-            DropDownList3.Items.Clear();
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            TextBox1.Text = "";
-            TextBox2.Text = "";
-            DropDownList1.ClearSelection();
-            DropDownList2.Items.Clear();
-            DropDownList3.Items.Clear();
+            hfId.Value = "";
+            txtQtd.Text = "";
+            DropTipo.ClearSelection();
+            DropCategorias.ClearSelection();
+            DropMarcas.Items.Clear();
+            DropProdutos.Items.Clear();
+        }
+
+        protected void GridLancamentos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "Excluir")
+            {
+                string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(connStr))
+                {
+                    string sql = "UPDATE Lancamentos SET Ativo = 0 WHERE Id = @Id";
+                    SqlCommand cmd = new SqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                Response.Redirect(Request.RawUrl);
+            }
+
+            if (e.CommandName == "Editar")
+            {
+                CarregarLancamentoParaEdicao(id);
+            }
+        }
+
+        private void CarregarLancamentoParaEdicao(int id)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connStr))
+            {
+                string sql = @"SELECT Tipo, CategoriaID, MarcaID, ProdutoID, QTD 
+                               FROM Lancamentos 
+                               WHERE Id = @Id";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@Id", id);
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    hfId.Value = id.ToString();
+                    DropTipo.SelectedValue = reader["Tipo"].ToString();
+                    DropCategorias.SelectedValue = reader["CategoriaID"].ToString();
+                    DropCategorias_SelectedIndexChanged(null, null);
+                    DropMarcas.SelectedValue = reader["MarcaID"].ToString();
+                    DropMarcas_SelectedIndexChanged(null, null);
+                    DropProdutos.SelectedValue = reader["ProdutoID"].ToString();
+                    txtQtd.Text = reader["QTD"].ToString();
+                }
+            }
         }
     }
 }
-        
-    
